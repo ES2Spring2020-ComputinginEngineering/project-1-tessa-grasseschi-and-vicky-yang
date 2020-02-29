@@ -4,6 +4,7 @@
 
 import microbit as mb
 import radio  # Needs to be imported separately
+import math
 
 # Change the channel if other microbits are interfering. (Default=7)
 radio.on()  # Turn on radio
@@ -28,17 +29,18 @@ while not mb.button_a.is_pressed():
     # Need to format into a single string
     # Send the string over the radio
     ######################################################
-    acc_x = microbit.accelerometer.get_x() #acceleration in the x-direction
-    acc_y = microbit.accelerometer.get_y() #acceleration in the y-direction
-    acc_z = microbit.accelerometer.get_z() #acceleration in the z-direction
+    acc_x = mb.accelerometer.get_x() #acceleration in the x-direction
+    acc_y = mb.accelerometer.get_y() #acceleration in the y-direction
+    acc_z = mb.accelerometer.get_z() #acceleration in the z-direction
+    acceleration = math.sqrt(acc_x**2 + acc_y**2 + acc_z**2)
     while True:
-        time0 = microbit.running_time()
-        while not microbit.button_a.is_pressed():#waiting loop
-            microbit.display.show(microbit.Image.HAPPY)
-        while microbit.button_a.is_pressed(): #timing loop
-            microbit.display.show(microbit.Image.CLOCK1)
-            time1 = microbit.running_time()
-        time1 = microbit.running_time()
+        time0 = mb.running_time()
+        while not mb.button_a.is_pressed():#waiting loop
+            mb.display.show(mb.Image.HAPPY)
+        while mb.button_a.is_pressed(): #timing loop
+            mb.display.show(mb.Image.CLOCK1)
+            time1 = mb.running_time()
+        time1 = mb.running_time()
         elapsed_time = (time1 - time0)/1000
 
     radio.send(message)
