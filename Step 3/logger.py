@@ -18,10 +18,13 @@ while not mb.button_a.is_pressed():  # wait for button A to be pressed to begin 
 
 radio.send('start') # Send the word 'start' to start the receiver
 mb.sleep(1000)
-mb.display.show(mb.Image.HEART)  # Display Heart while logging
+mb.display.show(mb.Image.HEART)
+# Display Heart while logging
+mb.sleep(1000)
 
 
 # Read and send accelerometer data repeatedly until button A is pressed again
+message = ""
 while not mb.button_a.is_pressed():
     ######################################################
     # FILL In HERE
@@ -30,19 +33,20 @@ while not mb.button_a.is_pressed():
     # Send the string over the radio
     ######################################################
     #for i in range(1000):
-    time0 = mb.running_time()
+    #time0 = mb.running_time()
+    mb.display.show(mb.Image.ALL_ARROWS)
     acc_x = mb.accelerometer.get_x() #acceleration in the x-direction
     acc_y = mb.accelerometer.get_y() #acceleration in the y-direction
     acc_z = mb.accelerometer.get_z() #acceleration in the z-direction
-    acceleration = math.sqrt(acc_x**2 + acc_y**2 + acc_z**2)
-    while mb.button_a.is_pressed(): #timing loop
-        mb.display.show(mb.Image.CLOCK1)
-        time1 = mb.running_time()
-    time1 = mb.running_time()
-    elapsed_time = (time1 - time0)/1000
-    message = 'something'
+    # acceleration = math.sqrt(acc_x**2 + acc_y**2 + acc_z**2)
+    # while mb.button_a.is_pressed(): #timing loop
+#         mb.display.show(mb.Image.CLOCK1)
+#         time1 = mb.running_time()
+#     time1 = mb.running_time()
+#     elapsed_time = (time1 - time0)/1000
+    message = " x: " + str(acc_x) + " y: " + str(acc_y) + " z: " + str(acc_z)
     radio.send(message)
-    mb.sleep(10)
+    mb.sleep(100)
 
 
 
