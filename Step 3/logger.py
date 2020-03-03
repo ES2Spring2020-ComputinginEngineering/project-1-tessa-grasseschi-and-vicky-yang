@@ -8,7 +8,7 @@ import math
 
 # Change the channel if other microbits are interfering. (Default=7)
 radio.on()  # Turn on radio
-radio.config(channel=7, length=100)
+radio.config(channel=13, length=100)
 
 print('Program Started')
 mb.display.show(mb.Image.HAPPY)
@@ -25,6 +25,7 @@ mb.sleep(1000)
 
 # Read and send accelerometer data repeatedly until button A is pressed again
 message = ""
+time0 = mb.running_time()
 while not mb.button_a.is_pressed():
     ######################################################
     # FILL In HERE
@@ -32,22 +33,13 @@ while not mb.button_a.is_pressed():
     # Need to format into a single string
     # Send the string over the radio
     ######################################################
-    #for i in range(1000):
-    #time0 = mb.running_time()
-    mb.display.show(mb.Image.ALL_ARROWS)
+    mb.display.show(mb.Image.HOUSE, wait=False)
     acc_x = mb.accelerometer.get_x() #acceleration in the x-direction
     acc_y = mb.accelerometer.get_y() #acceleration in the y-direction
     acc_z = mb.accelerometer.get_z() #acceleration in the z-direction
-    # acceleration = math.sqrt(acc_x**2 + acc_y**2 + acc_z**2)
-    # while mb.button_a.is_pressed(): #timing loop
-#         mb.display.show(mb.Image.CLOCK1)
-#         time1 = mb.running_time()
-#     time1 = mb.running_time()
-#     elapsed_time = (time1 - time0)/1000
-    message = " x: " + str(acc_x) + " y: " + str(acc_y) + " z: " + str(acc_z)
+    time1 = mb.running_time()
+    elapsed_time = (time1 - time0)/1000
+    message = str(elapsed_time) + ", " + str(acc_x) + ", " + str(acc_y) + ", " +  str(acc_z) + ","
     radio.send(message)
-    mb.sleep(100)
-
-
-
+    mb.sleep(20)
 mb.display.show(mb.Image.SQUARE)  # Display Square when program ends

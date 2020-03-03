@@ -7,7 +7,7 @@ import radio  # Needs to be imported separately
 
 # Change the channel if other microbits are interfering. (Default=7)
 radio.on()  # Turn on radio
-radio.config(channel=7, length =100)
+radio.config(channel=13, length =100)
 
 print('Program Started')
 mb.display.show(mb.Image.HAPPY, delay=1000, clear=True)
@@ -19,7 +19,6 @@ while not incoming == 'start':
     incoming = radio.receive()
 print('start')
 
-fout = open("output.txt", "w")
 while True:
     incoming = radio.receive() # Read from radio
 
@@ -31,9 +30,12 @@ while True:
         # Incoming is string sent from logger
         # Need to parse it and reformat as a tuple for the MU plotter
         #############################################################
-        print(incoming)
-        mb.sleep(100)
-        fout.write(incoming)
+        message = incoming.split(",")
+        time = float(message[0])
+        x_acc = float(message[1])
+        y_acc = float(message[2])
+        z_acc = float(message[3])
+        print((time, x_acc, y_acc, z_acc))
 
+        mb.sleep(10)
 
-fout.close()
