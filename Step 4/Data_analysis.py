@@ -42,6 +42,14 @@ def arrays_for_acc_time_graphs(file):
             counter += 1
     return data
 
+def pendulum(lengths, acceleration):
+# This function calculates the period of the pendulum with the actual data
+# This function takes one parameter, which is acceleration
+# This function returns an array of the periods of the pendulum
+    period = 2*np.pi*np.sqrt(lengths/acceleration)
+    return period
+
+#opening data files
 data1_10in = open("Pendulum 10 inches Trial 1.csv")
 data2_12in = open("Pendulum 12 inches Trial 2.csv")
 data3_14in = open("Pendulum 14 inches Trial 1.csv")
@@ -87,3 +95,11 @@ plt.title('Acceleration vs. Time for 18-inch Pendulum Length')
 plt.ylabel('Acceleration')
 plt.xlabel('Time(s)')
 plt.show()
+
+#Finding Period of Pendulum
+length = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
+acceleration1 = np.sqrt(data1[50:390, 1]**2 + data1[50:390, 2]**2 + data1[50:390, 3]**2)
+acceleration2 = np.sqrt(data2[:425, 1]**2 + data2[:425, 2]**2 + data2[:425, 3]**2)
+acceleration3 = np.sqrt(data3[25:340, 1]**2 + data3[25:340, 2]**2 + data3[25:340, 3]**2)
+acceleration4 = np.sqrt(data4[30:460, 1]**2 + data4[30:460, 2]**2 + data4[30:460, 3]**2)
+acceleration5 = np.sqrt(data5[10:465, 1]**2 + data5[10:465, 2]**2 + data5[10:465, 3]**2)

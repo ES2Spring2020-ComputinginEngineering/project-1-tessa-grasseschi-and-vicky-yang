@@ -1,7 +1,14 @@
+# Project 1, Part 2
+# Theorectical Period of the Pendulum
+# Name(s): Tessa Grasseschi and Vicky Yang
+
 import numpy as np
 import matplotlib.pyplot as plt
 
 def pendulum(lengths):
+# This function calculates the period of the pendulum with the theorectical information
+# This function takes one parameter, which is the length
+# This function returns the period of the pendulum
     period = 2*np.pi*np.sqrt(lengths/9.80)
     return period
 
