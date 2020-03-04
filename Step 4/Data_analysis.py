@@ -55,6 +55,7 @@ def pendulum(lengths, acceleration):
     return period
 
 # MAIN SCRIPT
+    
 # opening data files
 data1_10in = open("Pendulum 10 inches Trial 1.csv")
 data2_12in = open("Pendulum 12 inches Trial 2.csv")
@@ -102,10 +103,30 @@ plt.ylabel('Acceleration')
 plt.xlabel('Time(s)')
 plt.show()
 
-# Finding Period of Pendulum
+
+
+
+
+# FINDING PERIOD OF A PENDULUM
+
 length = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
-acceleration1 = np.sqrt(data1[50:390, 1]**2 + data1[50:390, 2]**2 + data1[50:390, 3]**2)
-acceleration2 = np.sqrt(data2[:425, 1]**2 + data2[:425, 2]**2 + data2[:425, 3]**2)
-acceleration3 = np.sqrt(data3[25:340, 1]**2 + data3[25:340, 2]**2 + data3[25:340, 3]**2)
-acceleration4 = np.sqrt(data4[30:460, 1]**2 + data4[30:460, 2]**2 + data4[30:460, 3]**2)
-acceleration5 = np.sqrt(data5[10:465, 1]**2 + data5[10:465, 2]**2 + data5[10:465, 3]**2)
+# Accelerations from actual data (in m/s^2)
+acceleration1 = (np.sqrt(data1[50:390, 1]**2 + data1[50:390, 2]**2 + data1[50:390, 3]**2)/1000)*9.8
+acceleration2 = (np.sqrt(data2[:425, 1]**2 + data2[:425, 2]**2 + data2[:425, 3]**2)/1000)*9.8
+acceleration3 = (np.sqrt(data3[25:340, 1]**2 + data3[25:340, 2]**2 + data3[25:340, 3]**2)/1000)*9.8
+acceleration4 = (np.sqrt(data4[30:460, 1]**2 + data4[30:460, 2]**2 + data4[30:460, 3]**2)/1000)*9.8
+acceleration5 = (np.sqrt(data5[10:465, 1]**2 + data5[10:465, 2]**2 + data5[10:465, 3]**2)/1000)*9.8
+
+period1 = sum(pendulum(0.2540, acceleration1))/340
+period2 = sum(pendulum(0.3048, acceleration2))/425
+period3 = sum(pendulum(0.3556, acceleration3))/315
+period4 = sum(pendulum(0.4064, acceleration4))/430
+period5 = sum(pendulum(0.4572, acceleration5))/455
+period = np.array([period1, period2, period3, period4, period5])
+
+# Period vs. Length Graph for All Lengths
+plt.plot(length, period, "o-")
+plt.title("Period vs. Time")
+plt.ylabel("Period(s)")
+plt.xlabel("Length(m)")
+plt.show()
