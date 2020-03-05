@@ -9,7 +9,7 @@ Name(s): Tessa Grasseschi & Vicky Yang
 # IMPORT STATEMENTS
 import numpy as np
 import matplotlib.pyplot as plt
-
+import scipy.signal as sig
 # CUSTOM FUNCTIONS
 def find_file_length(file):
 # Purpose is to find the length of the file so the we can create the array
@@ -47,6 +47,26 @@ def arrays_for_acc_time_graphs(file):
             counter += 1
     return data
 
+def find_tilt_x(acc_x, acc_y, acc_z):
+#This function calculates and returns the angle of the tilt in the x direction
+#Takes three parameters: acceleration in the x-direction, acceleration in the y-direction, acceleration in the z-direction
+#Returns tilt_x (x-angle)
+    y = np.sqrt((acc_y)**2+(acc_z**2))
+    x = acc_x
+    tilt_x = np.arctan(x,y)
+    x_angle = (tilt_x *57.29) - 90
+    return x_angle # in degrees
+
+def find_tilt_y(acc_x, acc_y, acc_z):
+#This function calculates and returns the angle of the tilt in the y direction
+#Takes three parameters: acceleration in the x-direction, acceleration in the y-direction, acceleration in the z-direction
+#Returns tilt_y (y-angle)
+    y = np.sqrt(((acc_x)**2)+((acc_z**2)))
+    x = acc_y
+    tilt_y = np.arctan(x,y)
+    y_angle = (tilt_y * 57.29)
+    return y_angle # in degrees
+
 def pendulum(lengths, acceleration):
 # This function calculates the period of the pendulum with the actual data
 # This function takes one parameter, which is acceleration
@@ -67,7 +87,7 @@ data5_18in = open("Pendulum 18 inches Trial 1.csv")
 data1 = arrays_for_acc_time_graphs(data1_10in)
 plt.plot(data1[50:390, 0], data1[50:390, 1], 'r-', data1[50:390, 0], data1[50:390, 2], 'b-')
 plt.title('Acceleration vs. Time for 10-inch Pendulum Length')
-plt.ylabel('Acceleration')
+plt.ylabel('Acceleration (milli-G)')
 plt.xlabel('Time(s)')
 plt.show()
 
@@ -75,7 +95,7 @@ plt.show()
 data2 = arrays_for_acc_time_graphs(data2_12in)
 plt.plot(data2[:425, 0], data2[:425, 1], 'r-', data2[:425, 0], data2[:425, 2], 'b-')
 plt.title('Acceleration vs. Time for 12-inch Pendulum Length')
-plt.ylabel('Acceleration')
+plt.ylabel('Acceleration (milli-G)')
 plt.xlabel('Time(s)')
 plt.show()
 
@@ -83,7 +103,7 @@ plt.show()
 data3 = arrays_for_acc_time_graphs(data3_14in)
 plt.plot(data3[25:340, 0], data3[25:340, 1], 'r-', data3[25:340, 0], data3[25:340, 2], 'b-')
 plt.title('Acceleration vs. Time for 14-inch Pendulum Length')
-plt.ylabel('Acceleration')
+plt.ylabel('Acceleration (milli-G)')
 plt.xlabel('Time(s)')
 plt.show()
 
@@ -91,7 +111,7 @@ plt.show()
 data4 = arrays_for_acc_time_graphs(data4_16in)
 plt.plot(data4[30:460, 0], data4[30:460, 1], 'r-', data4[30:460, 0], data4[30:460, 2], 'b-')
 plt.title('Acceleration vs. Time for 16-inch Pendulum Length')
-plt.ylabel('Acceleration')
+plt.ylabel('Acceleration (milli-G)')
 plt.xlabel('Time(s)')
 plt.show()
 
@@ -99,17 +119,60 @@ plt.show()
 data5 = arrays_for_acc_time_graphs(data5_18in)
 plt.plot(data5[10:465, 0], data5[10:465, 1], 'r-', data5[10:465, 0], data5[10:465, 2], 'b-')
 plt.title('Acceleration vs. Time for 18-inch Pendulum Length')
-plt.ylabel('Acceleration')
+plt.ylabel('Acceleration (milli-G)')
 plt.xlabel('Time(s)')
 plt.show()
 
+# FINDING ANGLE OF THE PENDULUM
 
+# Theta vs. Time Graph for 10 inches
+x_angle_10_in = find_tilt_x(data1[50:390,1], data1[50:390, 2], data1[50:390,3])
+y_angle_10_in = find_tilt_y(data1[50:390,1], data1[50:390, 2], data1[50:390,3])
+plt.plot(data1[50:390,0], x_angle_10_in, 'r-', data1[50:390, 0], y_angle_10_in, 'b-')
+plt.title('Theta vs. Time for 10-inch Pendulum Length')
+plt.ylabel('Theta(degrees)')
+plt.xlabel('Time (s)')
+plt.show()
 
+# Theta vs. Time Graph for 12 inches
+x_angle_12_in = find_tilt_x(data2[:425, 1], data2[:425, 2], data2[:425,3])
+y_angle_12_in = find_tilt_y(data2[:425, 1], data2[:425, 2], data2[:425,3])
+plt.plot(data2[:425,0], x_angle_12_in, 'r-', data2[:425, 0], y_angle_12_in, 'b-')
+plt.title('Theta vs. Time for 12-inch Pendulum Length')
+plt.ylabel('Theta(degrees)')
+plt.xlabel('Time (s)')
+plt.show()
 
+# Theta vs. Time Graph for 14 inches
+x_angle_14_in = find_tilt_x(data3[25:340, 1], data3[25:340, 2], data3[25:340,3])
+y_angle_14_in = find_tilt_y(data3[25:340, 1], data3[25:340, 2], data3[25:340,3])
+plt.plot(data3[25:340,0], x_angle_14_in, 'r-', data3[25:340, 0], y_angle_14_in, 'b-')
+plt.title('Theta vs. Time for 14-inch Pendulum Length')
+plt.ylabel('Theta(degrees)')
+plt.xlabel('Time (s)')
+plt.show()
+
+# Theta vs.Time Graph for 16 inches 
+x_angle_16_in = find_tilt_x(data4[30:460, 1], data4[30:460, 2], data4[30:460, 3])
+y_angle_16_in = find_tilt_y(data4[30:460, 1], data4[30:460, 2], data4[30:460, 3])
+plt.plot(data4[30:460, 0], x_angle_16_in, 'r-', data4[30:460,0], y_angle_16_in, 'b-')
+plt.title('Theta vs. Time for 16-inch Pendulum Length')
+plt.ylabel('Theta(degrees)')
+plt.xlabel('Time (s)')
+plt.show()
+
+#Theta vs. Time Graph for 18 inches 
+x_angle_18_in = find_tilt_x(data5[10:465, 1], data5[10:465, 2], data5[10:465, 3])
+y_angle_18_in = find_tilt_y(data5[10:465, 1], data5[10:465, 2], data5[10:465, 3])
+plt.plot(data5[10:465, 0], x_angle_18_in, 'r-', data5[10:465,0], y_angle_18_in, 'b-')
+plt.title('Theta vs. Time for 18-inch Pendulum Length')
+plt.ylabel('Theta(degrees)')
+plt.xlabel('Time (s)')
+plt.show()
 
 # FINDING PERIOD OF A PENDULUM
 
-length = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
+#length = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
 # Accelerations from actual data (in m/s^2)
 acceleration1 = (np.sqrt(data1[50:390, 1]**2 + data1[50:390, 2]**2 + data1[50:390, 3]**2)/1000)*9.8
 acceleration2 = (np.sqrt(data2[:425, 1]**2 + data2[:425, 2]**2 + data2[:425, 3]**2)/1000)*9.8
@@ -117,16 +180,22 @@ acceleration3 = (np.sqrt(data3[25:340, 1]**2 + data3[25:340, 2]**2 + data3[25:34
 acceleration4 = (np.sqrt(data4[30:460, 1]**2 + data4[30:460, 2]**2 + data4[30:460, 3]**2)/1000)*9.8
 acceleration5 = (np.sqrt(data5[10:465, 1]**2 + data5[10:465, 2]**2 + data5[10:465, 3]**2)/1000)*9.8
 
-period1 = sum(pendulum(0.2540, acceleration1))/340
-period2 = sum(pendulum(0.3048, acceleration2))/425
-period3 = sum(pendulum(0.3556, acceleration3))/315
-period4 = sum(pendulum(0.4064, acceleration4))/430
-period5 = sum(pendulum(0.4572, acceleration5))/455
-period = np.array([period1, period2, period3, period4, period5])
-
-# Period vs. Length Graph for All Lengths
-plt.plot(length, period, "o-")
-plt.title("Period vs. Time")
-plt.ylabel("Period(s)")
-plt.xlabel("Length(m)")
+#x_filt = sig.medfilt(data1[50:390,:])
+x_pks = sig.find_peaks(data1)
+plt.plot(x_pks, 'r-')
 plt.show()
+
+
+#period1 = sum(pendulum(0.2540, acceleration1))/340
+#period2 = sum(pendulum(0.3048, acceleration2))/425
+#period3 = sum(pendulum(0.3556, acceleration3))/315
+#period4 = sum(pendulum(0.4064, acceleration4))/430
+#period5 = sum(pendulum(0.4572, acceleration5))/455
+#period = np.array([period1, period2, period3, period4, period5])
+#
+## Period vs. Length Graph for All Lengths
+#plt.plot(length, period, "o-")
+#plt.title("Period vs. Length")
+#plt.ylabel("Period(s)")
+#plt.xlabel("Length(m)")
+#plt.show()
