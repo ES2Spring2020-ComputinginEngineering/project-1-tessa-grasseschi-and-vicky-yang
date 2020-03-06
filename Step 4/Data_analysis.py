@@ -53,7 +53,7 @@ def find_tilt_x(acc_x, acc_y, acc_z):
 #Returns tilt_x (x-angle)
     y = np.sqrt((acc_y)**2+(acc_z**2))
     x = acc_x
-    tilt_x = np.arctan(x,y)
+    tilt_x = np.arctan2(x,y)
     x_angle = (tilt_x *57.29) - 90
     return x_angle # in degrees
 
@@ -63,7 +63,7 @@ def find_tilt_y(acc_x, acc_y, acc_z):
 #Returns tilt_y (y-angle)
     y = np.sqrt(((acc_x)**2)+((acc_z**2)))
     x = acc_y
-    tilt_y = np.arctan(x,y)
+    tilt_y = np.arctan2(x,y)
     y_angle = (tilt_y * 57.29)
     return y_angle # in degrees
 
@@ -173,15 +173,14 @@ plt.show()
 
 
 # FINDING PERIOD OF A PENDULUM
-#peak_10 = sig.find_peaks(y_angle_10_in)
-#peak_10_elements = []
-#for element in peak_10:
-#    if element in y_angle_10_in[0]:
-#        index = element.index()
-#        time_at_peak = data1[index,0]
-#        peak_10_elements.append(time_at_peak)
-#        print(time_at_peak)
 
+theta_filt_10 = sig.medfilt(x_angle_10_in)
+peak_10 = sig.find_peaks(theta_filt_10)
+peak_10_times = []
+for index in peak_10[0]:
+   # if peak_10[0[index]] in theta_filt_10:
+   time = data1[index+50,0]
+   peak_10_times.append(time)
 
 
 #SAVE FOR NOW 
@@ -210,9 +209,9 @@ plt.show()
     #get the corresponding data from data1
     #then we need the 0=eth index of that data which will be the time
     
-print(sig.find_peaks(y_angle_10_in))
-print(data1[11])
-print(data1[11,0])
+#print(sig.find_peaks(y_angle_10_in))
+#print(data1[11])
+#print(data1[11,0])
 
 
 
