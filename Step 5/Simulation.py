@@ -10,3 +10,9 @@ import numpy as np
 # CUSTOM FUNCTIONS
 
 # MAIN SCRIPT
+# Initializing
+t = [0]
+acc = [0]
+vel = [0]
+pos = [0]
+

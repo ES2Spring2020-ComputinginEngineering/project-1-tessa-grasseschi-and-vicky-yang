@@ -4,9 +4,10 @@ Project 1, Part 4
 Data Analysis Functions
 Name(s): Tessa Grasseschi & Vicky Yang
 """
+# IMPORT STATEMENTS
+import numpy as np
 
-#CUSTOM FUNCTIONS
-
+# CUSTOM FUNCTIONS
 def find_file_length(file):
 # Purpose is to find the length of the file so the we can create the array
 # knowing how many rows to create it with.
@@ -49,7 +50,7 @@ def find_tilt_x(acc_x, acc_y, acc_z):
 #Returns tilt_x (x-angle)
     y = np.sqrt((acc_y)**2+(acc_z**2))
     x = acc_x
-    tilt_x = np.arctan(x,y)
+    tilt_x = np.arctan2(x,y)
     x_angle = (tilt_x *57.29) - 90
     return x_angle # in degrees
 
@@ -59,13 +60,6 @@ def find_tilt_y(acc_x, acc_y, acc_z):
 #Returns tilt_y (y-angle)
     y = np.sqrt(((acc_x)**2)+((acc_z**2)))
     x = acc_y
-    tilt_y = np.arctan(x,y)
+    tilt_y = np.arctan2(x,y)
     y_angle = (tilt_y * 57.29)
     return y_angle # in degrees
-
-def pendulum(lengths, acceleration):
-# This function calculates the period of the pendulum with the actual data
-# This function takes one parameter, which is acceleration
-# This function returns an array of the periods of the pendulum
-    period = 2*np.pi*np.sqrt(lengths/acceleration)
-    return period
