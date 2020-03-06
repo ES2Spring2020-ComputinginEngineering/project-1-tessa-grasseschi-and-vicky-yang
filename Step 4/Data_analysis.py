@@ -10,6 +10,7 @@ Name(s): Tessa Grasseschi & Vicky Yang
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal as sig
+import statistics
 # CUSTOM FUNCTIONS
 def find_file_length(file):
 # Purpose is to find the length of the file so the we can create the array
@@ -174,74 +175,75 @@ plt.show()
 
 # FINDING PERIOD OF A PENDULUM
 
+# period of 10 inch length
 theta_filt_10 = sig.medfilt(x_angle_10_in)
 peak_10 = sig.find_peaks(theta_filt_10)
 peak_10_times = []
 for index in peak_10[0]:
-   # if peak_10[0[index]] in theta_filt_10:
    time = data1[index+50,0]
    peak_10_times.append(time)
+period_10 = []
+for i in range(len(peak_10_times)-1):
+    time_difference = peak_10_times[i+1] - peak_10_times[i]
+    period_10.append(time_difference)
+peak_10_mean = statistics.mean(period_10)
 
+# period of 12 inch length
+theta_filt_12 = sig.medfilt(x_angle_12_in)
+peak_12 = sig.find_peaks(theta_filt_12)
+peak_12_times = []
+for index in peak_12[0]:
+   time2 = data2[index,0]
+   peak_12_times.append(time2)
+period_12 = []
+for i in range(len(peak_12_times)-1):
+    time_difference2 = peak_12_times[i+1] - peak_12_times[i]
+    period_12.append(time_difference2)
+peak_12_mean = statistics.mean(period_12)
 
-#SAVE FOR NOW 
-#so find_peaks returns a list/array(?) of the indexes
-    #then withing each index there are four numbers (time and 3 accel)
-    #so within that index, we just want the first index (0)
-    #I got that to work with just looking at the data 
-    #but I couldn't get a working loop 
-    
-#so for this, I printed all of the indices it returns 
-    #because my window isn't showing anything so I gotta print
-#the first index it gave is 11, which is index 11 in data 1
-    #so then i printed that index from data 1 to see what happened
-    #and it gave back time, accel, accel, accel
-    #so then I took the zero-eth index of the 11th index and got back that time
-    #but I just can't make it into a loop because i try something like
-        #peak_10 = sig.find peaks(y_angle_10_in)
-        #x = data1[peak_10, 0] 
-        #because I want to take the index from the returned list from find_peaks
-        #and then take the that index from data1
-        #and then get the time from that index
-        #but it won't work because peak_10 isn't an number
-        
-    #so when we use find_peaks, we get back either a list or array of indices
-    #then we need to take each index from that list (peak_10) and 
-    #get the corresponding data from data1
-    #then we need the 0=eth index of that data which will be the time
-    
-#print(sig.find_peaks(y_angle_10_in))
-#print(data1[11])
-#print(data1[11,0])
+# period of 14 inch length
+theta_filt_14 = sig.medfilt(x_angle_14_in)
+peak_14 = sig.find_peaks(theta_filt_14)
+peak_14_times = []
+for index in peak_14[0]:
+   time3 = data3[index,0]
+   peak_14_times.append(time3)
+period_14 = []
+for i in range(len(peak_14_times)-1):
+    time_difference3 = peak_14_times[i+1] - peak_14_times[i]
+    period_14.append(time_difference3)
+peak_14_mean = statistics.mean(period_14)
 
+# period of 16 inch length
+theta_filt_16 = sig.medfilt(x_angle_16_in)
+peak_16 = sig.find_peaks(theta_filt_16)
+peak_16_times = []
+for index in peak_16[0]:
+   time4 = data4[index,0]
+   peak_16_times.append(time4)
+period_16 = []
+for i in range(len(peak_16_times)-1):
+    time_difference4 = peak_16_times[i+1] - peak_16_times[i]
+    period_16.append(time_difference4)
+peak_16_mean = statistics.mean(period_16)
 
+# period 18 inch length
+theta_filt_18 = sig.medfilt(x_angle_18_in)
+peak_18 = sig.find_peaks(theta_filt_18)
+peak_18_times = []
+for index in peak_18[0]:
+   time5 = data5[index,0]
+   peak_18_times.append(time5)
+period_18 = []
+for i in range(len(peak_18_times)-1):
+    time_difference5 = peak_18_times[i+1] - peak_18_times[i]
+    period_18.append(time_difference5)
+peak_18_mean = statistics.mean(period_18)
 
-
-
-        
-#length = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
-# Accelerations from actual data (in m/s^2)
-#acceleration1 = (np.sqrt(data1[50:390, 1]**2 + data1[50:390, 2]**2 + data1[50:390, 3]**2)/1000)*9.8
-#acceleration2 = (np.sqrt(data2[:425, 1]**2 + data2[:425, 2]**2 + data2[:425, 3]**2)/1000)*9.8
-#acceleration3 = (np.sqrt(data3[25:340, 1]**2 + data3[25:340, 2]**2 + data3[25:340, 3]**2)/1000)*9.8
-#acceleration4 = (np.sqrt(data4[30:460, 1]**2 + data4[30:460, 2]**2 + data4[30:460, 3]**2)/1000)*9.8
-#acceleration5 = (np.sqrt(data5[10:465, 1]**2 + data5[10:465, 2]**2 + data5[10:465, 3]**2)/1000)*9.8
-
-#x_filt = sig.medfilt(data1[50:390,:])
-#x_pks = sig.find_peaks(data1)
-#plt.plot(x_pks, 'r-')
-#plt.show()
-
-
-#period1 = sum(pendulum(0.2540, acceleration1))/340
-#period2 = sum(pendulum(0.3048, acceleration2))/425
-#period3 = sum(pendulum(0.3556, acceleration3))/315
-#period4 = sum(pendulum(0.4064, acceleration4))/430
-#period5 = sum(pendulum(0.4572, acceleration5))/455
-#period = np.array([period1, period2, period3, period4, period5])
-#
-## Period vs. Length Graph for All Lengths
-#plt.plot(length, period, "o-")
-#plt.title("Period vs. Length")
-#plt.ylabel("Period(s)")
-#plt.xlabel("Length(m)")
-#plt.show()
+# Period vs. Length for Pendulum
+length = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
+plt.plot(length, [peak_10_mean, peak_12_mean, peak_14_mean, peak_16_mean, peak_18_mean], 'ro')
+plt.title('Period vs. Length of Pendulum')
+plt.ylabel('Period (s)')
+plt.xlabel('Length (m)')
+plt.show()
