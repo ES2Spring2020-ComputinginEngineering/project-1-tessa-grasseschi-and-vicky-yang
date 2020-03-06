@@ -1,8 +1,8 @@
 # Project1
 Project 1 Starter Code
 
-Names:
-Team Name:
+Names: Vicky Yang & Tessa Grasseschi
+Team Name: Vicky & Tessa
 
 Your primary tasks will be to:
 
