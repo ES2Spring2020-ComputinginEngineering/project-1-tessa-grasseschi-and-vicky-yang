@@ -123,6 +123,7 @@ plt.ylabel('Acceleration (milli-G)')
 plt.xlabel('Time(s)')
 plt.show()
 
+
 # FINDING ANGLE OF THE PENDULUM
 
 # Theta vs. Time Graph for 10 inches
@@ -170,14 +171,53 @@ plt.ylabel('Theta(degrees)')
 plt.xlabel('Time (s)')
 plt.show()
 
+
 # FINDING PERIOD OF A PENDULUM
-peak_10 = sig.find_peaks(y_angle_10_in)
-peak_10_elements = []
-for element in peak_10:
-    if element in y_angle_10_in[0]:
-        index = element.index()
-        time_at_peak = data1[index,0]
-        peak_10_elements.append(time_at_peak)
+#peak_10 = sig.find_peaks(y_angle_10_in)
+##peak_10_elements = []
+#for element in peak_10:
+#    if element in y_angle_10_in[0]:
+#        index = element.index()
+##        time_at_peak = data1[index,0]
+##       peak_10_elements.append(time_at_peak)
+#        print(time_at_peak)
+
+
+
+#SAVE FOR NOW 
+#so find_peaks returns a list/array(?) of the indexes
+    #then withing each index there are four numbers (time and 3 accel)
+    #so within that index, we just want the first index (0)
+    #I got that to work with just looking at the data 
+    #but I couldn't get a working loop 
+    
+#so for this, I printed all of the indices it returns 
+    #because my window isn't showing anything so I gotta print
+#the first index it gave is 11, which is index 11 in data 1
+    #so then i printed that index from data 1 to see what happened
+    #and it gave back time, accel, accel, accel
+    #so then I took the zero-eth index of the 11th index and got back that time
+    #but I just can't make it into a loop because i try something like
+        #peak_10 = sig.find peaks(y_angle_10_in)
+        #x = data1[peak_10, 0] 
+        #because I want to take the index from the returned list from find_peaks
+        #and then take the that index from data1
+        #and then get the time from that index
+        #but it won't work because peak_10 isn't an number
+        
+    #so when we use find_peaks, we get back either a list or array of indices
+    #then we need to take each index from that list (peak_10) and 
+    #get the corresponding data from data1
+    #then we need the 0=eth index of that data which will be the time
+    
+print(sig.find_peaks(y_angle_10_in))
+print(data1[11])
+print(data1[11,0])
+
+
+
+
+
         
 #length = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
 # Accelerations from actual data (in m/s^2)
