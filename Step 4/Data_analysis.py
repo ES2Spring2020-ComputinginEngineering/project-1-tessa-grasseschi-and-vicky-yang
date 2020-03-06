@@ -11,6 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal as sig
 import statistics
+
 # CUSTOM FUNCTIONS
 def find_file_length(file):
 # Purpose is to find the length of the file so the we can create the array
@@ -67,13 +68,6 @@ def find_tilt_y(acc_x, acc_y, acc_z):
     tilt_y = np.arctan2(x,y)
     y_angle = (tilt_y * 57.29)
     return y_angle # in degrees
-
-def pendulum(lengths, acceleration):
-# This function calculates the period of the pendulum with the actual data
-# This function takes one parameter, which is acceleration
-# This function returns an array of the periods of the pendulum
-    period = 2*np.pi*np.sqrt(lengths/acceleration)
-    return period
 
 # MAIN SCRIPT
     
