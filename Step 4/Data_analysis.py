@@ -171,19 +171,26 @@ plt.xlabel('Time (s)')
 plt.show()
 
 # FINDING PERIOD OF A PENDULUM
-
+peak_10 = sig.find_peaks(y_angle_10_in)
+peak_10_elements = []
+for element in peak_10:
+    if element in y_angle_10_in[0]:
+        index = element.index()
+        time_at_peak = data1[index,0]
+        peak_10_elements.append(time_at_peak)
+        
 #length = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
 # Accelerations from actual data (in m/s^2)
-acceleration1 = (np.sqrt(data1[50:390, 1]**2 + data1[50:390, 2]**2 + data1[50:390, 3]**2)/1000)*9.8
-acceleration2 = (np.sqrt(data2[:425, 1]**2 + data2[:425, 2]**2 + data2[:425, 3]**2)/1000)*9.8
-acceleration3 = (np.sqrt(data3[25:340, 1]**2 + data3[25:340, 2]**2 + data3[25:340, 3]**2)/1000)*9.8
-acceleration4 = (np.sqrt(data4[30:460, 1]**2 + data4[30:460, 2]**2 + data4[30:460, 3]**2)/1000)*9.8
-acceleration5 = (np.sqrt(data5[10:465, 1]**2 + data5[10:465, 2]**2 + data5[10:465, 3]**2)/1000)*9.8
+#acceleration1 = (np.sqrt(data1[50:390, 1]**2 + data1[50:390, 2]**2 + data1[50:390, 3]**2)/1000)*9.8
+#acceleration2 = (np.sqrt(data2[:425, 1]**2 + data2[:425, 2]**2 + data2[:425, 3]**2)/1000)*9.8
+#acceleration3 = (np.sqrt(data3[25:340, 1]**2 + data3[25:340, 2]**2 + data3[25:340, 3]**2)/1000)*9.8
+#acceleration4 = (np.sqrt(data4[30:460, 1]**2 + data4[30:460, 2]**2 + data4[30:460, 3]**2)/1000)*9.8
+#acceleration5 = (np.sqrt(data5[10:465, 1]**2 + data5[10:465, 2]**2 + data5[10:465, 3]**2)/1000)*9.8
 
 #x_filt = sig.medfilt(data1[50:390,:])
-x_pks = sig.find_peaks(data1)
-plt.plot(x_pks, 'r-')
-plt.show()
+#x_pks = sig.find_peaks(data1)
+#plt.plot(x_pks, 'r-')
+#plt.show()
 
 
 #period1 = sum(pendulum(0.2540, acceleration1))/340
