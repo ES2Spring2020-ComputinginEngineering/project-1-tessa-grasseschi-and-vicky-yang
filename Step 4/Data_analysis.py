@@ -174,12 +174,12 @@ plt.show()
 
 # FINDING PERIOD OF A PENDULUM
 #peak_10 = sig.find_peaks(y_angle_10_in)
-##peak_10_elements = []
+#peak_10_elements = []
 #for element in peak_10:
 #    if element in y_angle_10_in[0]:
 #        index = element.index()
-##        time_at_peak = data1[index,0]
-##       peak_10_elements.append(time_at_peak)
+#        time_at_peak = data1[index,0]
+#        peak_10_elements.append(time_at_peak)
 #        print(time_at_peak)
 
 
