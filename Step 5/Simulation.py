@@ -15,11 +15,11 @@ num_samples = 100000
 
 # CUSTOM FUNCTIONS
 def update_system(L,acc,vel,pos,t):
-    dt = 0.001
+    dt = 0.0001
     tNext=t+dt
-    posNext = pos+vel*dt
-    accNext = ((-9.8)/L)*(np.sin((posNext*np.pi)/180))
-    velNext = vel+acc*dt
+    accNext = ((-9.8)/L)*(np.sin((pos*np.pi)/180))
+    velNext = vel+accNext*dt
+    posNext = pos+velNext*dt
     return posNext, velNext, accNext, tNext
 
 # MAIN SCRIPT
