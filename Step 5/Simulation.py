@@ -39,7 +39,7 @@ L5 = 0.4572
 sim_state[0,0] = 0 #time
 sim_state[0,1] = 0 #accel
 sim_state[0,2] = 0 #v
-sim_state[0,3] = 135 #pos
+sim_state[0,3] = 45 #pos
 
 for i in range(num_samples-1):
      posNext, velNext, accNext, tNext = update_system(L5, sim_state[i,1], sim_state[i,2], sim_state[i,3],sim_state[i,0])
