@@ -39,10 +39,10 @@ L5 = 0.4572
 sim_state[0,0] = 0 #time
 sim_state[0,1] = 0 #accel
 sim_state[0,2] = 0 #v
-sim_state[0,3] = 45 #pos
+sim_state[0,3] = 70 #pos
 
 for i in range(num_samples-1):
-     posNext, velNext, accNext, tNext = update_system(L5, sim_state[i,1], sim_state[i,2], sim_state[i,3],sim_state[i,0])
+     posNext, velNext, accNext, tNext = update_system(L1, sim_state[i,1], sim_state[i,2], sim_state[i,3],sim_state[i,0])
      sim_state[i+1,0] = tNext #time
      sim_state[i+1,1] = accNext #accel
      sim_state[i+1,2] = velNext #v
@@ -64,7 +64,7 @@ peak_10_mean = statistics.mean(period_10)
 plt.figure()
 plt.subplot(3, 1, 1)
 plt.plot(sim_state[:,0], sim_state[:,3], 'r-', sim_state[peak_10[0],0], sim_state[peak_10[0],3], 'b.')
-plt.title('Angular Position, Velocity, & Acceleration of 18-inch Pendulum')
+plt.title('Angular Position, Velocity, & Acceleration of 10-inch Pendulum')
 plt.ylabel('Position')
 plt.subplot(3, 1, 2)
 plt.plot(sim_state[:,0], sim_state[:,1], 'g-')
