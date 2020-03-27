@@ -1,5 +1,8 @@
 ##################
-# FILL IN HEADER
+# Names: Vicky Yang
+#        Tessa Grasseschi
+# Project 1, Part 3
+# Logger
 #################
 
 import microbit as mb

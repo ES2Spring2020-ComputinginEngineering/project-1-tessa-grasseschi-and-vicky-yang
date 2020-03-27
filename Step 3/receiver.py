@@ -1,5 +1,8 @@
 ##################
-# FILL IN HEADER
+# Names: Vicky Yang
+#        Tessa Grasseschi
+# Project 1, Part 3
+# Reciever
 #################
 
 import microbit as mb
@@ -38,4 +41,3 @@ while True:
         print((time, x_acc, y_acc, z_acc))
 
         mb.sleep(10)
-
