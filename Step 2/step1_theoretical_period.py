@@ -15,6 +15,7 @@ def pendulum(lengths):
 arr1d = np.array([0.2540, 0.3048, 0.3556, 0.4064, 0.4572]) #in meters
 period = pendulum(arr1d)
 
+# Theoretical Periods vs. Lengths
 plt.plot(arr1d, period, arr1d, period, 'r.')
 plt.ylabel("Period (seconds)")
 plt.xlabel("Length (meters)")
