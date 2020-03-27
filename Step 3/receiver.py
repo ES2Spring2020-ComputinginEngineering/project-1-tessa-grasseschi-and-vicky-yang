@@ -1,9 +1,9 @@
-##################
+###########################
 # Names: Vicky Yang
 #        Tessa Grasseschi
 # Project 1, Part 3
-# Reciever
-#################
+# Receiver
+###########################
 
 import microbit as mb
 import radio  # Needs to be imported separately
@@ -28,16 +28,13 @@ while True:
     if incoming is not None: # message was received
         mb.display.show(mb.Image.HEART, delay=100, clear=True, wait=False)
 
-        #############################################################
-        # FILL IN HERE
-        # Incoming is string sent from logger
-        # Need to parse it and reformat as a tuple for the MU plotter
-        #############################################################
         message = incoming.split(",")
         time = float(message[0])
         x_acc = float(message[1])
         y_acc = float(message[2])
         z_acc = float(message[3])
         print((time, x_acc, y_acc, z_acc))
+        # Incoming is string sent from logger
+        # Need to parse it and reformat as a tuple for the MU plotter
 
         mb.sleep(10)

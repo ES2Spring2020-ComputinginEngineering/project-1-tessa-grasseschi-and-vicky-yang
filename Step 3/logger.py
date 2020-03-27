@@ -1,9 +1,9 @@
-##################
+###########################
 # Names: Vicky Yang
 #        Tessa Grasseschi
 # Project 1, Part 3
 # Logger
-#################
+###########################
 
 import microbit as mb
 import radio  # Needs to be imported separately
@@ -30,12 +30,10 @@ mb.sleep(1000)
 message = ""
 time0 = mb.running_time()
 while not mb.button_a.is_pressed():
-    ######################################################
-    # FILL In HERE
+
     # Need to collect accelerometer and time measurements
     # Need to format into a single string
     # Send the string over the radio
-    ######################################################
     mb.display.show(mb.Image.HOUSE, wait=False)
     acc_x = mb.accelerometer.get_x() #acceleration in the x-direction
     acc_y = mb.accelerometer.get_y() #acceleration in the y-direction
