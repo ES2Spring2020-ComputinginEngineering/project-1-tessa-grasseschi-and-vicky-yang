@@ -17,9 +17,9 @@ num_samples = 100000
 def update_system(L,acc,vel,pos,t):
     dt = 0.001
     tNext=t+dt
-    accNext = ((-9.8)/L)*(np.sin((pos*np.pi)/180))
-    velNext = vel+accNext*dt
-    posNext = pos+velNext*dt
+    accNext = ((-9.81)/L)*(np.sin((pos*np.pi)/180))
+    velNext = vel+acc*dt
+    posNext = pos+vel*dt
     return posNext, velNext, accNext, tNext
 
 # MAIN SCRIPT
