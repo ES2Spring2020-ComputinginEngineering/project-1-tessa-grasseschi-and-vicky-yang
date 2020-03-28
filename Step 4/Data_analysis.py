@@ -16,7 +16,7 @@ import statistics
 
 # MAIN SCRIPT
 
-# opening data files
+# opening data files (sample files in the Step 4 folder)
 data1_10in = open("Pendulum 10 inches Trial 1.csv")
 data2_12in = open("Pendulum 12 inches Trial 2.csv")
 data3_14in = open("Pendulum 14 inches Trial 1.csv")

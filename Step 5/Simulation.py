@@ -18,10 +18,10 @@ def update_system(L,acc,vel,pos,t):
 # The purpose of this function is to use the initial conditions and simulate/generate
 # more data from the equations within the function. It updates the values of acceleration,
 # velocity, and position (angular)
-#There are five arguments, and they are length of the pendulum, initial acceleration,
-#initial velocity, initial position, and initial time.
-#There are four return values, and they are the updated position, velocity, acceleration,
-#and time
+# There are five arguments, and they are length of the pendulum, initial acceleration,
+# initial velocity, initial position, and initial time.
+# There are four return values, and they are the updated position, velocity, acceleration,
+# and time
     dt = 0.001
     tNext=t+dt
     accNext = ((-9.81)/L)*(np.sin((pos*np.pi)/180)) #converted into radians
