@@ -11,7 +11,7 @@ import scipy.signal as sig
 import statistics
 
 #global variables
-num_samples = 100000
+num_samples = 10000
 
 # CUSTOM FUNCTIONS
 def update_system(L,acc,vel,pos,t):
@@ -24,7 +24,7 @@ def update_system(L,acc,vel,pos,t):
 # and time
     dt = 0.001
     tNext=t+dt
-    accNext = ((-9.81)/L)*(np.sin((pos*np.pi)/180)) #converted into radians
+    accNext = ((-9.81)/L)*(np.sin((pos*np.pi)/180))*(180/np.pi) #converted into degrees
     velNext = vel+acc*dt
     posNext = pos+vel*dt
     return posNext, velNext, accNext, tNext
@@ -71,7 +71,7 @@ peak_10_mean = statistics.mean(period_10)
 plt.figure()
 plt.subplot(3, 1, 1)
 plt.plot(sim_state[:,0], sim_state[:,3], 'r-', sim_state[peak_10[0],0], sim_state[peak_10[0],3], 'b.')
-plt.title('Angular Position, Velocity, & Acceleration of 10-inch Pendulum')
+plt.title('Angular Position, Velocity, & Acceleration of 18-inch Pendulum')
 plt.ylabel('Position') #in radians
 plt.subplot(3, 1, 2)
 plt.plot(sim_state[:,0], sim_state[:,1], 'g-')
