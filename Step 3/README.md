@@ -1,4 +1,4 @@
-# Project 1 Part 3 Goes Here
+# Project 1 Part 3
 # Names: Vicky Yang & Tessa Grasseschi
 
 
